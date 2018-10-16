@@ -54,7 +54,7 @@ def train(submit):
 results = []
 for _ in range(1000):
     results.append(train(submit=False))
-
+print(results)
 plt.hist(results,50,normed=1, facecolor='g', alpha=0.75)
 plt.xlabel('Episodes required to reach 200')
 plt.ylabel('Frequency')
