@@ -1,6 +1,6 @@
 import gym 
 import numpy as np 
-import matplotlib,pyplot as plt
+import matplotlib.pyplot as plt 
 
 env = gym.make('CartPole-v0')
 
@@ -32,7 +32,7 @@ def train(submit):
         episodes_per_update = 5
         noise_scaling = 0.1
         parameters = np.random.rand(4) * 2  - 1
-        bestreward = 0
+        bestreward = None
         counter = 0
 
         for _ in range(2000):
@@ -54,8 +54,8 @@ def train(submit):
 # create graphs
 results = []
 for _ in range(1000):
-    results.append(train(submit=False))
-
+    results.append(train(submit=True))
+print(results)
 plt.hist(results,50,normed=1, facecolor='g', alpha=0.75)
 plt.xlabel('Episodes required to reach 200')
 plt.ylabel('Frequency')
