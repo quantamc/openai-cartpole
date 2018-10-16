@@ -11,4 +11,4 @@ The code was inpired by [kvfrans about learning CartPole](http://kvfrans.com/sim
 
 **Hill climbing**: Start from a random initialization, add a little noise evey iteration and keep the new set if it improved.
 
-**Policy gradient** Use a softmax policy and compute a value function using discounted Monte-Carlo. Update the policy to favor action-state pairs that return a higher total reward than the average total reward of that state.
+**Policy gradient** Use a softmax policy and compute a value function using discounted Monte-Carlo. Update the policy to favor action-state pairs that return a higher total reward than the average total reward of that state.# openai-cartpole
