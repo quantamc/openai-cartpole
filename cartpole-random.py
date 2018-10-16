@@ -22,7 +22,7 @@ def run_episode(env, parameters):
 # Random serach, try random weights and pick one that performs the best
 def train(submit):
     if submit:
-        env.monitor.start('vartpole-experiments/', force=True)
+        env.monitor.start('cartpole-experiments/', force=True)
 
     counter = 0
     bestparams = None
