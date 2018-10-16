@@ -5,6 +5,7 @@ Simple reinforcement learning algorithms implemented for CartPole on OpenAI gym.
 This code is part of the Move37 exercises by the school of AI [Markov Decision Process Chapter](https://www.theschool.ai/courses/move-37-course/lessons/the-bellman-equation/),
 
 The code was inpired by [kvfrans about learning CartPole](http://kvfrans.com/simple-algoritms-for-solving-cartpole/)
+
 ##Algorithms implemented
 
 **Random Search**: Keep trying random weights between [-1,1] and greedily keep the best set.
