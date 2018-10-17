@@ -4,9 +4,6 @@ import matplotlib.pyplot as plt
 import tensorflow as tf 
 import random
 import math
-
-env = gym.make('CartPole-v0')
-
 # Policy approach 
 # a policy that can change little by little, moving from one absolute limt (move left it tot < 0
 # otherwise move right) changing the agent from deterministic to stochastic policy
@@ -138,23 +135,43 @@ def run_episode(env, policy_grad, value_grad, sess):
 
 
     advantages_vector = np.expand_dims(advantages, axis=1)
-    sess.run(vl_optimizer, feed_dict={pl_state: states, pl_advantages: advantages_vector, pl_actions: actions})
+    sess.run(pl_optimizer, feed_dict={pl_state: states, pl_advantages: advantages_vector, pl_actions: actions})
 
     return totalreward
 
 
 
 
-    # The decrease factor puts more of an emphasis on short-term rewrd than long term
-    
-    # The question the becomes how to use the newly found values in order to update our policy to reflect it.
-    # We want to favour actions that return a toatl reward greater than the average of that state. This error between the 
-    # actual return and the average is called an advantage. We can plug in the advantage as a scale, and update our policy
-    # accordingly.
+# The decrease factor puts more of an emphasis on short-term rewrd than long term
 
-    for index, trans in enumerate(transitions):
-        obs, actions, reward = trans
-        # [not shown: the value function from above]
+# The question the becomes how to use the newly found values in order to update our policy to reflect it.
+# We want to favour actions that return a toatl reward greater than the average of that state. This error between the 
+# actual return and the average is called an advantage. We can plug in the advantage as a scale, and update our policy
+# accordingly.
+
+
+env = gym.make('CartPole-v0')
+#env.monitor.start('cartpole-hill/', force=True)
+
+counter = 0
+policy_grad = policy_gradient()
+value_grad = value_gradient()
+sess = tf.InteractiveSession()
+sess.run(tf.initialize_all_variables())
+for i in range(2000):
+    counter += 1
+    reward = run_episode(env, policy_grad, value_grad, sess)
+    if reward == 200:
+        print("reward 200")
+        print(i)
+        break
+t = 0
+for _ in range(1000):
+    reward = run_episode(env, policy_grad, value_grad, sess)
+    t += reward
+print(t/1000)
+env.monitor.close()
+    
         
         
     

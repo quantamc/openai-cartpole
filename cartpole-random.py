@@ -9,6 +9,7 @@ def run_episode(env, parameters):
     observation = env.reset()
     totalreward = 0
     for _ in range(200):
+        env.render()
         # each weight is multiplied by its respective observatio, and the products are summed up
         # if total is less than 0, we move left. Otherwise we move right
         action = 0 if np.matmul(parameters, observation) < 0 else 1
